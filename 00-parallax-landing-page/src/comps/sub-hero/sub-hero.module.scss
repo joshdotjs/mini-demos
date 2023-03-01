@@ -1,0 +1,43 @@
+@use 'css/breakpoints' as *;
+@use 'css/colors' as *;
+
+.section {
+  // padding: v.$section-p-y v.$gutter-w;
+  display: grid;
+  background: $white;
+
+  @media (max-width: #{$desktop}) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'A'
+      'B';
+  }
+
+  @media (min-width: #{$desktop}) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: 'A B';
+  }
+
+  .A {
+    grid-area: A;
+    // color: $red;
+    // background: $red;
+
+    .super-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    .button-container {
+      background: red;
+      width: 200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .B {
+    grid-area: B;
+    // background: $blue;
+  }
+}

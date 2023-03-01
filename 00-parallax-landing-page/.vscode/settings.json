@@ -1,0 +1,16 @@
+{
+  "files.exclude": {
+    // "**/*.ts": true,
+    // ".vscode/extensions.json": true,
+    // ".vscode/launch.json": true,
+    // ".vscode/tasks.json": true,
+    // "node_modules/": true,
+    // "README.md": true,
+    // ".netlify": true,
+    // "build": true,
+    // "public": true,
+    // "package-lock.json": true,
+    // "gsap-bonus.tgz": true
+    // "package.json": true
+  }
+}

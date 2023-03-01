@@ -1,0 +1,54 @@
+@use 'css/breakpoints' as *;
+@use 'css/fonts' as *;
+@use 'css/colors' as *;
+
+// ==============================================
+
+$nav-h: 90px;
+
+$gutter-w: 8rem;
+$section-p-y: 4rem;
+
+// ==============================================
+
+@media (max-width: #{$tablet}) {
+  :root {
+    --fs-sm: 0.8rem;
+    --gutter-w-hero: 1.5rem;
+  }
+}
+
+// ==============================================
+
+@media (min-width: #{$tablet}) {
+  :root {
+    --fs-sm: 1.2rem;
+    --gutter-w-hero: 2rem;
+  }
+}
+
+// ==============================================
+
+:root {
+  // fonts:
+  --font-family: #{$font-family};
+
+  // breakpoints:
+  --tablet: #{$tablet};
+  --desktop: #{$desktop};
+
+  // colors:
+  --white: #{$white};
+  --white-hover: #{$white-hover};
+
+  --black: #{$black};
+  --red: #{$red};
+
+  --blue: #{$blue};
+  --blue-hover: #{$blue-hover};
+
+  // sizes:
+  --nav-h: #{$nav-h};
+}
+
+// ==============================================

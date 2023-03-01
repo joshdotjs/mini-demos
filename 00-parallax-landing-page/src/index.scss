@@ -1,0 +1,201 @@
+@use 'css/scrollbar';
+@use 'css/fonts';
+@use 'css/variables' as *;
+@use 'css/colors' as *;
+@use 'css/breakpoints' as *;
+
+// ==============================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// * {
+//   outline: solid yellow 2px;
+// }
+
+// ==============================================
+
+html,
+body {
+  height: 100%;
+}
+
+// ==============================================
+
+body {
+  background-color: #111;
+  overscroll-behavior: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+
+  .navbar {
+    height: $nav-h;
+    width: 100vw;
+    background: white;
+    z-index: 10;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 26px;
+
+    .logo {
+      height: 100%;
+      color: white;
+    }
+
+    .container {
+      position: absolute;
+      color: black;
+      top: calc(#{$nav-h} + var(--gutter-w-hero));
+      right: var(--gutter-w-hero);
+      display: flex;
+      justify-content: space-between;
+
+      // background: orange;
+      @media (max-width: #{$desktop}) {
+        width: fit-content;
+      }
+      @media (min-width: #{$desktop}) {
+        width: 333px;
+      }
+
+      // background: orange;
+      .button {
+        opacity: 0; // fade-in with scroll-trigger
+
+        &.social {
+          background: white;
+          padding: 10px;
+          border-radius: 50%;
+          width: 48px;
+          height: 48px; // button-height (provider.js)
+
+          // svg {
+          //   height: 100%;
+          //   width: 100%;
+          // }
+
+          // display: flex;
+          // justify-content: center;
+          // align-items: center;
+
+          // hide on mobile
+          @media (max-width: #{$desktop}) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .grid {
+    max-width: 2500px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column-gap: 1rem;
+
+    width: 100vw;
+    margin: 0 auto;
+
+    .parallax-container {
+      position: relative;
+      overflow: hidden;
+      height: 80vh;
+      width: 100vw;
+      // max-height: 500px;
+      max-height: unset;
+
+      .img {
+        background-image: url('/img/hero_Moz.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: absolute;
+        width: 100%;
+        height: 100%; //160%;
+        bottom: 0;
+        opacity: 0; // gsap loading animation
+      }
+
+      &:nth-child(1) {
+        // -Span full grid width:
+        grid-column: 1/-1;
+
+        grid-row: 1;
+        height: 100vh;
+      }
+    }
+
+    .non-parallax-container {
+      grid-column: 1/-1;
+      // height: 100vh;
+      height: fit-content;
+      width: 100vw;
+
+      &.section-1 {
+        grid-row: 2;
+        background: white;
+
+        padding: 2rem;
+        background: white;
+
+        .signature,
+        .signature-name {
+          display: block;
+        }
+      }
+      &.section-2 {
+        grid-row: 3;
+        background: darkorchid;
+      }
+    }
+  }
+
+  ul.nav-links {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      // color: black;
+      margin: 0 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        padding: 0.5rem 0;
+        border-bottom: solid 3px transparent;
+        transition: all 0.2s ease;
+        &:hover {
+          color: $red;
+          border-bottom: solid 3px $red;
+        }
+      }
+    }
+
+    &.drawer-ul {
+      flex-direction: column;
+      // background: blue;
+      height: 500px;
+      justify-content: space-evenly;
+      position: absolute;
+      top: 45%;
+      transform: translateY(-50%);
+
+      a {
+        font-size: 1.4rem;
+        padding: 0.3rem 0;
+      }
+    }
+  }
+}
+
+// ==============================================
