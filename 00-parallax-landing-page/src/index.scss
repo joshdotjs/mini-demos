@@ -75,15 +75,6 @@ body {
           width: 48px;
           height: 48px; // button-height (provider.js)
 
-          // svg {
-          //   height: 100%;
-          //   width: 100%;
-          // }
-
-          // display: flex;
-          // justify-content: center;
-          // align-items: center;
-
           // hide on mobile
           @media (max-width: #{$desktop}) {
             display: none;
@@ -199,3 +190,12 @@ body {
 }
 
 // ==============================================
+
+@media (max-width: #{$desktop}) {
+  .hamburger { display: flex; }
+  #desktop-navlinks { display: none; }
+}
+@media (min-width: #{$desktop}) {
+  .hamburger { display: none; }
+  #desktop-navlinks { display: flex; }
+}

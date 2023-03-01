@@ -13,15 +13,6 @@ import Provider from 'comps/mantine/provider';
 import Hero from './comps/hero/hero';
 // import SubHero from './comps/sub-hero/sub-hero';
 
-// Hooks:
-import { useScreen } from 'hooks/use-screen';
-
-// Utils:
-// import { css } from 'utils/css';
-
-// Img:
-import logo from 'img/logo.png';
-
 // Data:
 import { links } from 'data/links';
 
@@ -41,8 +32,6 @@ function App() {
   const _buttons = useRef([]);
   const _icons = useRef([]);
   const _links = useRef([]);
-
-  const { mobile } = useScreen();
 
   // --------------------------------------------
 
@@ -77,12 +66,7 @@ function App() {
       effects: true,
     });
 
-    let speed;
-    if (mobile) {
-      speed = 1;
-    } else {
-      speed = 0.4;
-    }
+    const speed = 0.4;
     smoother.effects('.img', { speed });
     smoother.effects('.foreground', { speed: '1' });
 
@@ -164,21 +148,21 @@ function App() {
           Camera Company
         </h2>
 
-        {!mobile && (
-          <ul className='nav-links'>
+
+          <ul id="desktop-navlinks" className='nav-links'>
             {links.map(({ href, title }, idx) => (
               <li key={title} ref={(el) => (_links.current[idx] = el)}>
                 <a href={href}>{title}</a>
               </li>
             ))}
           </ul>
-        )}
 
-        {mobile && (
+
+        
           <svg
             className='hamburger'
             viewBox='0 0 16 16'
-            style={{ height: '100%' }}
+            style={{ height: '100%', cursor: 'pointer' }}
             ref={(el) => (_icons.current[0] = el)}
             onClick={() => setOpened(true)}
           >
@@ -187,7 +171,7 @@ function App() {
               d='M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z'
             />
           </svg>
-        )}
+        
 
         <div className='container'>
           <Button
