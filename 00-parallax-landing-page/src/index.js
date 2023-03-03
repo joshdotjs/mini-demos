@@ -6,7 +6,7 @@ import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
 import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
-import { Drawer, Button, Group } from '@mantine/core';
+import { Drawer, Button, MediaQuery } from '@mantine/core';
 
 // Comps:
 import Provider from 'comps/mantine/provider';
@@ -16,9 +16,11 @@ import Hero from './comps/hero/hero';
 // Data:
 import { links } from 'data/links';
 
+import './index.scss';
+
 // ==============================================
 
-import './index.scss';
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
 // ==============================================
 
@@ -36,9 +38,6 @@ function App() {
   // --------------------------------------------
 
   useEffect(() => {
-    // - - - - - - - - - - - - - - - - - - - - -
-
-    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
 
     // - - - - - - - - - - - - - - - - - - - - -
 
@@ -245,21 +244,26 @@ function App() {
         </footer>
       </main>
 
-      <Drawer
-        opened={opened}
-        onClose={() => setOpened(false)}
-        padding='xl'
-        size='lg'
-        // styles={{ drawer: { display: 'flex', alignItems: 'center' } }}
+      <MediaQuery
+        query="(min-width: 1000px)"
+        styles={{ display: 'none' }}
       >
-        <ul className='nav-links drawer-ul'>
-          {links.map(({ href, title }, idx) => (
-            <li key={title} ref={(el) => (_links.current[idx] = el)}>
-              <a href={href}>{title}</a>
-            </li>
-          ))}
-        </ul>
-      </Drawer>
+        <Drawer
+          opened={opened}
+          onClose={() => setOpened(false)}
+          padding='xl'
+          size='lg'
+          // styles={{ drawer: { display: 'flex', alignItems: 'center' } }}
+        >
+          <ul className='nav-links drawer-ul'>
+            {links.map(({ href, title }, idx) => (
+              <li key={title} ref={(el) => (_links.current[idx] = el)}>
+                <a href={href}>{title}</a>
+              </li>
+            ))}
+          </ul>
+        </Drawer>
+      </MediaQuery>
     </>
   );
 }
