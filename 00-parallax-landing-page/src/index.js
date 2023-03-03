@@ -45,15 +45,16 @@ function App() {
     setTimeout(() => {
       const tl = gsap.timeline();
       const fromTo = (ref, duration, delay) => {
-        tl.fromTo(ref, { opacity: 0 }, { opacity: 1, duration }, `<+=${delay}`);
+        if (ref)
+          tl.fromTo(ref, { opacity: 0 }, { opacity: 1, duration }, `<+=${delay}`);
       };
 
-      fromTo(_heros.current[0], 1, 0.2);
-      fromTo(_heros.current[1], 1, 0.15);
-      fromTo(_heros.current[2], 2, 0.2);
-      fromTo(_heros.current[3], 2, 0.1);
-      fromTo(_heros.current[4], 1, 0.2);
-      fromTo(_heros.current[5], 1.75, 0.2);
+      fromTo(_heros?.current?.[0], 1, 0.2);
+      fromTo(_heros?.current?.[1], 1, 0.15);
+      fromTo(_heros?.current?.[2], 2, 0.2);
+      fromTo(_heros?.current?.[3], 2, 0.1);
+      fromTo(_heros?.current?.[4], 1, 0.2);
+      fromTo(_heros?.current?.[5], 1.75, 0.2);
     }, delay);
 
     // - - - - - - - - - - - - - - - - - - - - -
@@ -83,50 +84,59 @@ function App() {
       },
     });
 
-    tl.fromTo(
-      nav,
-      {
-        backgroundColor: 'rgba(255, 255, 255, 0)',
-        height: '90px',
-      },
-      {
-        backgroundColor: 'rgba(255, 255, 255, 1)',
-        height: '90px',
-      }
-    );
+    if (nav) {
 
-    tl.fromTo(
-      [..._icons.current],
-      {
-        fill: 'white',
-      },
-      {
-        fill: 'black',
-      },
-      '<='
-    );
+      tl.fromTo(
+        nav,
+        {
+          backgroundColor: 'rgba(255, 255, 255, 0)',
+          height: '90px',
+        },
+        {
+          backgroundColor: 'rgba(255, 255, 255, 1)',
+          height: '90px',
+        }
+      );
+    }
+        
+    if (_icons.current.length > 0) {
+      tl.fromTo(
+        [..._icons.current],
+        {
+          fill: 'white',
+        },
+        {
+          fill: 'black',
+        },
+        '<='
+      );
+    }
 
-    tl.fromTo(
-      [..._links.current],
-      {
-        color: 'white',
-      },
-      {
-        color: 'black',
-      },
-      '<='
-    );
+    if (_links.current.length > 0) {
+      tl.fromTo(
+        [..._links.current],
+        {
+          color: 'white',
+        },
+        {
+          color: 'black',
+        },
+        '<='
+      );
+    }
 
-    tl.fromTo(
-      [..._buttons.current],
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-      },
-      '<='
-    );
+    if (_buttons.current.length > 0) {
+      tl.fromTo(
+        [..._buttons.current],
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+        },
+        '<='
+      );
+    }
 
     // - - - - - - - - - - - - - - - - - - - - -
 
