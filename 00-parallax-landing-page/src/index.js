@@ -6,7 +6,7 @@ import { gsap } from 'gsap/dist/gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
 import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
-import { Drawer, Button, MediaQuery } from '@mantine/core';
+import { Drawer, Button } from '@mantine/core';
 
 // Comps:
 import Provider from 'comps/mantine/provider';
@@ -244,26 +244,22 @@ function App() {
         </footer>
       </main>
 
-      <MediaQuery
-        query="(min-width: 1000px)"
-        styles={{ display: 'none' }}
+
+      <Drawer
+        opened={opened}
+        onClose={() => setOpened(false)}
+        padding='xl'
+        size='lg'
+        // styles={{ drawer: { display: 'flex', alignItems: 'center' } }}
       >
-        <Drawer
-          opened={opened}
-          onClose={() => setOpened(false)}
-          padding='xl'
-          size='lg'
-          // styles={{ drawer: { display: 'flex', alignItems: 'center' } }}
-        >
-          <ul className='nav-links drawer-ul'>
-            {links.map(({ href, title }, idx) => (
-              <li key={title} ref={(el) => (_links.current[idx] = el)}>
-                <a href={href}>{title}</a>
-              </li>
-            ))}
-          </ul>
-        </Drawer>
-      </MediaQuery>
+        <ul className='nav-links drawer-ul'>
+          {links.map(({ href, title }, idx) => (
+            <li key={title} ref={(el) => (_links.current[idx] = el)}>
+              <a href={href}>{title}</a>
+            </li>
+          ))}
+        </ul>
+      </Drawer>
     </>
   );
 }
